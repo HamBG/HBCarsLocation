@@ -1,0 +1,42 @@
+PODS:
+  - AFNetworking (2.4.1):
+    - AFNetworking/NSURLConnection (= 2.4.1)
+    - AFNetworking/NSURLSession (= 2.4.1)
+    - AFNetworking/Reachability (= 2.4.1)
+    - AFNetworking/Security (= 2.4.1)
+    - AFNetworking/Serialization (= 2.4.1)
+    - AFNetworking/UIKit (= 2.4.1)
+  - AFNetworking/NSURLConnection (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - BaiduMapKit (3.0.0)
+  - JVFloatingDrawer (0.1.0)
+  - MBProgressHUD (0.9.2)
+  - MJExtension (3.0.13)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.4.1)
+  - BaiduMapKit
+  - JVFloatingDrawer
+  - MBProgressHUD (~> 0.9)
+  - MJExtension
+
+SPEC CHECKSUMS:
+  AFNetworking: 41d45d2c14219af0fa5addf3cfd433a002c13c9f
+  BaiduMapKit: de2a726d5296d6b2dc0e974b683af73153608dcd
+  JVFloatingDrawer: 4782b1df21411aef2c1818f3b346cace02cc2e24
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
+
+COCOAPODS: 0.39.0
