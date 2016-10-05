@@ -118,7 +118,6 @@
 -(IBAction)getAlarmDate:(id)sender{
     //第一步，创建URL
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",KEY_SERVER_URL,METHOD]];
-
     //第二步，创建post请求
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     
@@ -148,13 +147,18 @@
     alarmStart.textColor = [UIColor grayColor];
     alarmStart.font = [UIFont fontWithName:@"Helvetica" size:15];
     alarmStart.text = @"-查询结果-";
+    
+    for (int i = 0; i<[self.scrollView.subviews count]; i++) {
+        [[self.scrollView.subviews objectAtIndex:i] removeFromSuperview];
+    }
+    
     [self.scrollView addSubview:alarmStart];
     
     for (int i = 0; i<[resultJSON count]; i++) {
         UILabel *start = [[UILabel alloc]initWithFrame:CGRectMake(10, y, SCREENW-30, 30)];
         start.font = [UIFont fontWithName:@"Helvetica" size:13];
-        NSString *stext = [[resultJSON objectAtIndex:0]objectForKey:@"beginTime"];
-        NSString *etext = [[resultJSON objectAtIndex:0]objectForKey:@"endTime"];
+        NSString *stext = [[resultJSON objectAtIndex:i]objectForKey:@"beginTime"];
+        NSString *etext = [[resultJSON objectAtIndex:i]objectForKey:@"endTime"];
         start.textAlignment = NSTextAlignmentLeft;
         start.textColor = [UIColor grayColor];
         start.text = [NSString stringWithFormat:@"-告警记录-beginTime:%@--endTime:%@",stext,etext];
@@ -163,5 +167,10 @@
     }
     // 设置内容大小
     self.scrollView.contentSize = CGSizeMake(320, [resultJSON count]*31+30);
+//    self.scrollView.subviews objectAtIndex:i 
+}
+
+- (IBAction)doBackBtnClick:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

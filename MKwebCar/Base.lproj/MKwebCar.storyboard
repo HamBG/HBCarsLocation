@@ -334,7 +334,11 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="hvF-gV-Ghi"/>
                     <navigationItem key="navigationItem" title="告警查询" id="39O-VM-ScT">
-                        <barButtonItem key="leftBarButtonItem" image="汽车" id="X0p-dj-aog"/>
+                        <barButtonItem key="leftBarButtonItem" image="汽车" id="X0p-dj-aog">
+                            <connections>
+                                <action selector="doBackBtnClick:" destination="ZHz-gi-3Bq" id="HXB-xf-6xc"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
