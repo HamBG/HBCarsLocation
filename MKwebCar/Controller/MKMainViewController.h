@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataFormServer.h"
+#import "MKAppDelegate.h"
 
-@interface MKMainViewController : UIViewController
+@interface MKMainViewController : UIViewController<BMKMapViewDelegate,DataFormServerDelegate>
+@property(nonatomic,retain) NSArray *resultJSON;
 
 @end

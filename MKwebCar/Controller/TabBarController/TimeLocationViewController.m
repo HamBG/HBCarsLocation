@@ -91,7 +91,7 @@ int showTag = 1;
     statusLabel.textAlignment = NSTextAlignmentLeft;
     statusLabel.font = [UIFont boldSystemFontOfSize:14.0f];
     
-    topInfoView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
+    topInfoView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, 40)];
     topInfoView.backgroundColor = [UIColor colorWithRed:172.0/255.0 green:172.0/255.0 blue:172.0/255.0 alpha:0.55f];
     
     [topInfoView addSubview:statusLabel];
@@ -107,7 +107,6 @@ int showTag = 1;
     MKAppDelegate *myDelegate = (MKAppDelegate*)[[UIApplication sharedApplication ]delegate];
     //第二步，创建请求
     NSString *message =myDelegate.userid;
-    NSLog(@"carno is %@",message);
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     NSString *username = [ud objectForKey:@"account"];
     NSString *pswd = [ud objectForKey:@"pwd"];
@@ -121,7 +120,6 @@ int showTag = 1;
     NSString *str = [NSString stringWithFormat:@"usertype=%@&&username=%@&&password=%@",usertype,username,pswd]; //设置参数
     //第一步，创建URL
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",KEY_SERVER_URL,METHOD]];
-//    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1:8080/vehicletracking/LocationServlet"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     
     [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
@@ -205,7 +203,6 @@ int showTag = 1;
     [mapView setRegion:adjustedRegion animated:YES];
 }
 - (void) viewDidAppear:(BOOL)animated {
-    [self viewUpdate];
     //定时器，定时刷新车辆位置信息
     timer =  [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(viewUpdate) userInfo:nil repeats:YES];
     //开启定时器

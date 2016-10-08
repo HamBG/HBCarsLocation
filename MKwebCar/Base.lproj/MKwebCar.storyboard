@@ -355,7 +355,7 @@
         <!--Item-->
         <scene sceneID="hzW-vp-bOh">
             <objects>
-                <viewController id="v3m-ak-x9f" sceneMemberID="viewController">
+                <viewController id="v3m-ak-x9f" customClass="TrackController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yrz-Nn-9qR"/>
                         <viewControllerLayoutGuide type="bottom" id="1Vg-YQ-GfR"/>
@@ -363,11 +363,15 @@
                     <view key="view" contentMode="scaleToFill" id="9Zn-qf-0Z8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.96078431369999995" green="0.63784365949999999" blue="0.1611610064" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="V9g-q0-IEY"/>
                     <navigationItem key="navigationItem" id="oZM-yD-Kyi">
-                        <barButtonItem key="leftBarButtonItem" image="汽车" id="ptT-TP-uWV"/>
+                        <barButtonItem key="leftBarButtonItem" image="汽车" id="ptT-TP-uWV">
+                            <connections>
+                                <action selector="doback:" destination="v3m-ak-x9f" id="Yri-fR-ptZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
@@ -434,6 +438,9 @@
                             <state key="normal" title="确认修改">
                                 <color key="titleColor" red="0.098039215690000001" green="0.65098039220000004" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <connections>
+                                <action selector="confirm:" destination="bsI-LQ-XRl" eventType="touchUpInside" id="3RC-fI-evc"/>
+                            </connections>
                         </button>
                         <sections>
                             <tableViewSection headerTitle="密码用于登录当前账号，修改密码后，请牢记新密码，如果您忘记密码，请联系客服处理。" id="8l5-tR-BYj">
@@ -461,6 +468,9 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
+                                                    <connections>
+                                                        <action selector="uidDidEndOnExit:" destination="bsI-LQ-XRl" eventType="editingDidEndOnExit" id="O7m-bW-yrl"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -497,6 +507,9 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
+                                                    <connections>
+                                                        <action selector="confirmPwdFirst:" destination="bsI-LQ-XRl" eventType="editingDidEndOnExit" id="cI0-SI-mjv"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -563,6 +576,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="confirmPwd" destination="9pA-Bf-17M" id="LRy-Ae-5KA"/>
+                        <outlet property="firstPwd" destination="rCQ-Yd-AVm" id="pGH-CS-RyZ"/>
+                        <outlet property="initialPwd" destination="85e-zx-yds" id="ggz-OZ-81T"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WkB-Oq-kNz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -707,6 +725,11 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="actionToggleLeftDrawer:" destination="3lx-VP-8oE" id="0Yw-HC-0f3"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="refresh" id="4Uh-s6-mo5">
+                            <connections>
+                                <action selector="doRefresh:" destination="3lx-VP-8oE" id="srF-tM-JzB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

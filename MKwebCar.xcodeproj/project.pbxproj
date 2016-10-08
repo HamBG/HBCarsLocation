@@ -57,6 +57,7 @@
 		188204781D91A96400D1D07C /* MKBaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188204741D91A96400D1D07C /* MKBaseTabBarController.m */; };
 		1882047B1D91A9D000D1D07C /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 1882047A1D91A9D000D1D07C /* UIView+Frame.m */; };
 		1882047E1D91AAB800D1D07C /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1882047D1D91AAB800D1D07C /* UIImage+Extension.m */; };
+		189562B71DA8AB3300940E03 /* TrackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189562B61DA8AB3300940E03 /* TrackController.m */; };
 		2C7FD89EFB0EEF9B2FC66165 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8572B8E142E4B7CF2B48B8 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -136,7 +137,7 @@
 		187362061DA2042D0058FC25 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		187362081DA204420058FC25 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		1873620A1DA2044C0058FC25 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
-		1873620C1DA227E70058FC25 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = Pods/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Map.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
+		1873620C1DA227E70058FC25 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = ../Pods/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Map.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
 		1881309F1D74240600100601 /* MKMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKMainViewController.h; sourceTree = "<group>"; };
 		188130A01D74240600100601 /* MKMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKMainViewController.m; sourceTree = "<group>"; };
 		188130A21D7432EF00100601 /* MKCarListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCarListController.h; sourceTree = "<group>"; };
@@ -167,6 +168,8 @@
 		1882047A1D91A9D000D1D07C /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		1882047C1D91AAB800D1D07C /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		1882047D1D91AAB800D1D07C /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
+		189562B51DA8AB3300940E03 /* TrackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackController.h; sourceTree = "<group>"; };
+		189562B61DA8AB3300940E03 /* TrackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackController.m; sourceTree = "<group>"; };
 		3A8572B8E142E4B7CF2B48B8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		40CEE03D71AE0EA24700A179 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C311A889D62CE3C3439C00AD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -210,7 +213,6 @@
 		182D6DCE1D6AD25400CA4BDD = {
 			isa = PBXGroup;
 			children = (
-				1873620C1DA227E70058FC25 /* mapapi.bundle */,
 				182D6DD91D6AD25400CA4BDD /* MKwebCar */,
 				182D6DF61D6AD25400CA4BDD /* MKwebCarTests */,
 				182D6E011D6AD25400CA4BDD /* MKwebCarUITests */,
@@ -246,6 +248,7 @@
 		182D6DDA1D6AD25400CA4BDD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1873620C1DA227E70058FC25 /* mapapi.bundle */,
 				182D6E251D6EECDC00CA4BDD /* MKwebCar.storyboard */,
 				182D6DDD1D6AD25400CA4BDD /* MKAppDelegate.h */,
 				182D6DDE1D6AD25400CA4BDD /* MKAppDelegate.m */,
@@ -362,6 +365,8 @@
 				18258F5A1DA3A6790083D471 /* MileWeekController.m */,
 				18258F611DA522390083D471 /* AlarmViewController.h */,
 				18258F621DA522390083D471 /* AlarmViewController.m */,
+				189562B51DA8AB3300940E03 /* TrackController.h */,
+				189562B61DA8AB3300940E03 /* TrackController.m */,
 			);
 			path = TabBarController;
 			sourceTree = "<group>";
@@ -667,6 +672,7 @@
 				188131581D81476800100601 /* MKButton.m in Sources */,
 				188130AD1D81019800100601 /* DataFormServer.m in Sources */,
 				182F14F31D8D070A00C44B1F /* Department.m in Sources */,
+				189562B71DA8AB3300940E03 /* TrackController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
