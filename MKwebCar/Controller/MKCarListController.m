@@ -21,9 +21,23 @@ static NSString *TestViewControllerNode = @"TestViewControllerNode";
 @interface MKCarListController()
 @property (nonatomic, strong) NSMutableArray *subNodes;
 @property (nonatomic, strong) SSColorfulRefresh *colorRefresh;
+@property (nonatomic, strong) NSMutableArray *companys;
+@property (nonatomic, strong) NSMutableArray *departments;
 @end
 
 @implementation MKCarListController
+- (NSMutableArray *)companys{
+    if (!_companys) {
+        _companys = [NSMutableArray array];
+    }
+    return _companys;
+}
+- (NSMutableArray *)departments{
+    if (!_departments) {
+        _departments = [NSMutableArray array];
+    }
+    return _departments;
+}
 - (void) doConfigTreeView {
     self.treeView.rootNode = [MTreeNode initWithParent:nil expand:NO];
     //设置禁止自动适应尺寸
@@ -219,15 +233,31 @@ static NSString *TestViewControllerNode = @"TestViewControllerNode";
     NSString *type = [ud objectForKey:@"role"];
     
     NSArray *trackArry = [[_resultJSON objectAtIndex:0]objectForKey:@"carlist"];
-    NSMutableArray *companys = [[NSMutableArray alloc]init];
-    
+//    NSMutableArray *companys = [[NSMutableArray alloc]init];
+//    NSMutableArray *deaprtments = [[NSMutableArray alloc]init];
+    [self.companys removeAllObjects];
+    [self.departments removeAllObjects];
     
     //解码并放入数组
     for (int i = 0;i<[trackArry count]; i++) {
-        Company *company = [[Company alloc]init];
-        if([type isEqualToString:@"ROLE_ADMIN"]){
-            company.name = [[trackArry objectAtIndex:i]objectForKey:@"groupname"];
-        }else{
+        
+        if([type isEqualToString:@"ROLE_ADMIN"]){//此时只有部门2层
+            Department *depart = [[Department alloc]init];
+            depart.name = [[trackArry objectAtIndex:i]objectForKey:@"groupname"];
+            NSArray *carsArray = [[trackArry objectAtIndex:i]objectForKey:@"carlist"];
+            depart.cars = [[NSMutableArray alloc]init];
+            for (int k=0; k<carsArray.count; k++) {
+                CarInfo *car = [[CarInfo alloc]init];
+                car.carno = [[carsArray objectAtIndex:k]objectForKey:@"carno"];
+                car.gpsstatus = [[carsArray objectAtIndex:k]objectForKey:@"gpsstatus"];
+                [depart.cars insertObject:car atIndex:k];
+            }
+            [self.departments insertObject:depart atIndex:i];
+            [self loadDepartments];
+            
+            
+        }else{//此时只有公司3层
+            Company *company = [[Company alloc]init];
             company.name = [[trackArry objectAtIndex:i]objectForKey:@"branchname"];
             NSArray *departArry = [[trackArry objectAtIndex:i]objectForKey:@"deptlist"];
             company.departments = [[NSMutableArray alloc]init];
@@ -244,16 +274,24 @@ static NSString *TestViewControllerNode = @"TestViewControllerNode";
                 }
                 [company.departments insertObject:depart atIndex:j];
             }
+            [self.companys insertObject:company atIndex:i];
+            [self lodeCompanys];
         }
-        [companys insertObject:company atIndex:i];
     }
     
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //停止刷新
+        [self.colorRefresh endRefreshing];
+    });
+}
+
+-(void)lodeCompanys{
     [self.treeView.rootNode.subNodes removeAllObjects];
     
     //加载数据
-    for (int i = 0; i < [companys count]; i++) {
+    for (int i = 0; i < [self.companys count]; i++) {
         MTreeNode *company = [MTreeNode initWithParent:self.treeView.rootNode expand:(0 == i)];
-        Company *com = companys[i];
+        Company *com = self.companys[i];
         int num=0;
         int onnum = 0;
         for (int j = 0; j<[com.departments count];j++) {
@@ -277,12 +315,31 @@ static NSString *TestViewControllerNode = @"TestViewControllerNode";
         [self.treeView.rootNode.subNodes addObject:company];
     }
     [self.treeView reloadData];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //停止刷新
-        [self.colorRefresh endRefreshing];
-    });
 }
 
+-(void)loadDepartments{
+    [self.treeView.rootNode.subNodes removeAllObjects];
+    //加载数据
+    for (int i = 0; i<[self.departments count]; i++) {
+        MTreeNode *depart = [MTreeNode initWithParent:self.treeView.rootNode  expand:(0 == i)];
+        Department *dp = self.departments[i];
+        int num=0;
+        int onnum = 0;
 
+        for (int j=0; j<[dp.cars count]; j++) {
+            MTreeNode *carNode = [MTreeNode initWithParent:depart expand:NO];
+            CarInfo *car = dp.cars[j];
+            carNode.content = @{@"name":car.carno,@"status":car.gpsstatus};
+            [depart.subNodes addObject:carNode];
+            num++;
+            if ([car.gpsstatus intValue] != 2) {
+                onnum++;
+            }
+
+        }
+        depart.content = @{@"name":dp.name,@"status":@(num),@"onNum":@(onnum)};
+        [self.treeView.rootNode.subNodes addObject:depart];
+    }
+    [self.treeView reloadData];
+}
 @end

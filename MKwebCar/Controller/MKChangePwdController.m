@@ -36,19 +36,15 @@
         //    NSURL *url = [NSURL URLWithString:@"http://192.168.1.92:8080/vehicletracking/ModifyPasswordServlet"];
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",KEY_SERVER_URL,METHOD]];
         
-        MKAppDelegate *myDelegate = (MKAppDelegate*)[[UIApplication sharedApplication ]delegate];
-        //第二步，创建请求
-        NSString *message =myDelegate.userid;
-        NSLog(@"carno is %@",message);
         NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-        NSString *username = [ud objectForKey:@"userId"];
-        NSString *pswd = [ud objectForKey:@"pswd"];
+        NSString *username = [ud objectForKey:@"account"];
+        NSString *pswd = [ud objectForKey:@"pwd"];
         NSString *type = [ud objectForKey:@"role"];
         NSString *usertype = nil;
         if ([type isEqualToString:@"person"]) {
             usertype = @"C";
         }else
-            usertype = [NSString stringWithString:message];
+            usertype = @"M";
         
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
         

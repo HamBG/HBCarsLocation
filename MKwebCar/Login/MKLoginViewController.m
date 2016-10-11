@@ -250,9 +250,6 @@
             [userDefaults setObject:role forKey:@"role"];
         }
         //跳转到baseBar
-//        UIWindow *currentWindow = [[UIApplication sharedApplication].delegate window];
-//        currentWindow.rootViewController = (UIViewController *)[[MKAppDelegate globalDelegate] drawerViewController];
-        
         [self presentViewController:(UIViewController *)[[MKAppDelegate globalDelegate] drawerViewController] animated:YES completion:nil];
     }
 }
